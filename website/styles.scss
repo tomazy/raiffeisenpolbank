@@ -1,0 +1,37 @@
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 100;
+}
+
+table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+}
+
+table.rates {
+  // max-width: 30rem;
+}
+
+table th {
+  border-bottom: 2px solid #eceeef;
+  text-align: left;
+}
+
+table th,
+table td {
+  padding: .75rem;
+  border-top: 1px solid #eceeef;
+}
+
+table th.buy,
+table th.sell,
+table td.buy,
+table td.sell {
+  text-align: right;
+}
+
+tbody tr:nth-of-type(odd) {
+  background-color: rgba(0,0,0,.05);
+}
+

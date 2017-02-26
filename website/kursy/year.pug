@@ -1,0 +1,20 @@
+extends /layout.pug
+block vars
+  - var title = `kursy CHF (${year})`
+
+block content
+  h1 Historyczne kursy CHF w roku #{year}
+  table.rates
+    thead
+      tr
+        each header in headers
+          th(class=header.class)= header.title
+    tbody
+      each row in rows
+        tr
+          each cell, i in row
+            td(class=headers[i].class)
+              if headers[i].title === 'Link'
+                a(href=cell target="_blank") link
+              else
+                = cell

@@ -1,0 +1,10 @@
+extends /layout.pug
+block vars
+  - var title = "kursy CHF"
+
+block content
+  h1 Historyczne kursy CHF
+  ul
+    each year in years
+      li
+        a(href=`${year}.html`)= year

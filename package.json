@@ -7,7 +7,10 @@
   "scripts": {
     "test": "standard",
     "start": "babel-node index.js",
-    "b": "babel-node"
+    "b": "babel-node",
+    "pug": "pug",
+    "serve": "serve",
+    "sass": "node-sass"
   },
   "author": "tomazy",
   "license": "MIT",
@@ -26,6 +29,11 @@
     "request-promise": "4.1.1"
   },
   "devDependencies": {
+    "node-sass": "^4.5.0",
+    "pad-right": "^0.2.2",
+    "pug": "2.0.0-beta11",
+    "pug-cli": "1.0.0-alpha6",
+    "serve": "^3.4.1",
     "standard": "8.6.0"
   }
 }
