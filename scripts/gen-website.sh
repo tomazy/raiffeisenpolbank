@@ -6,6 +6,9 @@ DEST=gh-pages
 
 mkdir -p $DEST
 
+echo 'Generate css'
+npm -s run sass --  website/styles.scss ${DEST}/styles.css
+
 echo 'Generating year pages'
 rm -fr ${DEST}/kursy
 mkdir -p ${DEST}/kursy
@@ -22,6 +25,3 @@ npm -s run b scripts/genKursyIndex.js > ${DEST}/kursy/index.html
 
 echo 'Generate index'
 npm -s run pug -- --basedir website < website/index.pug > ${DEST}/index.html
-
-echo 'Generate css'
-npm -s run sass --  website/styles.scss ${DEST}/styles.css

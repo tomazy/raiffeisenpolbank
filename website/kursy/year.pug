@@ -3,8 +3,8 @@ block vars
   - var title = `kursy CHF (${year})`
 
 block content
-  h1 Historyczne kursy CHF w roku #{year}
   table.rates
+    caption Historyczne kursy CHF w roku #{year}
     thead
       tr
         each header in headers
