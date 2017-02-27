@@ -5,7 +5,6 @@ import path from 'path'
 import fs from 'fs'
 import glob from 'glob'
 import rename from 'gulp-rename'
-import { basename } from './utils'
 
 const CSV_FILES = glob.sync('data/*.csv')
 
@@ -27,6 +26,12 @@ function loadCSV (filename) {
     .map(
       (s, idx) => [idx + 1, ...s.split(',').map(fixCell)]
     )
+}
+
+function basename (f) {
+  const parts = f.split('/')
+  const name = parts[parts.length - 1]
+  return name.split('.')[0]
 }
 
 const RATES_TABLE_HEADERS = [{
