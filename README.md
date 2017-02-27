@@ -9,4 +9,11 @@ npm -s start -- 2007-01-01 2008-01-01 | sort | uniq > 2007.csv
 
 Tabele kursów są generowane przez scrape'wanie stron Raiffeisen/Polbank.
 
-Strony są cache'owane w katalogu `.cache`
+Strony Raiffeisen/Polbank są cache'owane w katalogu `.cache`
+
+Zaktualizowanie strony:
+
+```bash
+npm run build
+npm run deploy
+```

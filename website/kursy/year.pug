@@ -3,6 +3,8 @@ block vars
   - var title = `kursy CHF (${year})`
 
 block content
+  div.links.text-center
+    a(href=`/data/${year}.csv`) Pobierz
   table.rates
     caption Historyczne kursy CHF w roku #{year}
     thead
