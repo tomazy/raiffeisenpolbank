@@ -7,6 +7,7 @@ import path from 'path'
 
 import ratesTasks from './gulp/rates'
 import cnameTasks from './gulp/cname'
+import dataTasks from './gulp/data'
 
 const DEST = path.resolve(__dirname, 'dist')
 
@@ -14,6 +15,7 @@ const SASS_GLOB = 'website/**/*.scss'
 
 ratesTasks({ DEST })
 cnameTasks({ DEST })
+dataTasks({ DEST })
 
 gulp.task('css', () => (
   gulp.src(SASS_GLOB)
@@ -23,11 +25,6 @@ gulp.task('css', () => (
 
 gulp.task('css:watch', () => (
   gulp.watch(SASS_GLOB, ['css'])
-))
-
-gulp.task('data', () => (
-  gulp.src('data/*.csv')
-    .pipe(gulp.dest(path.join(DEST, 'data')))
 ))
 
 gulp.task('html:website:index', () => (
