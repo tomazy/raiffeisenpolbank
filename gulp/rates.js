@@ -6,7 +6,7 @@ import fs from 'fs'
 import glob from 'glob'
 import rename from 'gulp-rename'
 
-const CSV_FILES = glob.sync('data/*.csv')
+const RATES_CSV_FILES = glob.sync('data/20??.csv')
 
 const BUY_INDEX = 2
 const SELL_INDEX = 3
@@ -60,13 +60,13 @@ export default function defineTasks ({ DEST }) {
       .pipe(pug({
         basedir: 'website',
         locals: {
-          years: CSV_FILES.map(basename)
+          years: RATES_CSV_FILES.map(basename)
         }
       }))
       .pipe(gulp.dest(path.join(DEST, 'kursy')))
   })
 
-  CSV_FILES.forEach(filename => {
+  RATES_CSV_FILES.forEach(filename => {
     const year = basename(filename)
     const rows = loadCSV(filename)
 

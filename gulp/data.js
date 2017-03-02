@@ -23,7 +23,7 @@ export default function defineTasks ({ DEST }) {
   ))
 
   gulp.task('data:all', () => (
-    gulp.src('data/*.csv')
+    gulp.src('data/20??.csv')
       .pipe(transform(removeLinksFromCSV))
       .pipe(concat('chf.csv'))
       .pipe(gulp.dest(path.join(DEST, 'data')))

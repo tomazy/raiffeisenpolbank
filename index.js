@@ -87,9 +87,16 @@ function scrapePeriod (fromDate, toDate) {
 const usage = `
 Usage:
   npm -s start -- 2007-01-02 2007-01-10
+or
+  npm -s start -- 2017 # scrapes from 2017-01-01 up to yesterday
 `
 function main () {
-  const [fromDate, toDate] = process.argv.slice(2)
+  let [fromDate, toDate] = process.argv.slice(2)
+
+  if (/^\d{4}$/.test(fromDate)) {
+    fromDate = `${fromDate}-01-01`
+    toDate = formatDate(new Date())
+  }
 
   if (!fromDate || !toDate) {
     console.log(usage)
