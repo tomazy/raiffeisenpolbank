@@ -18,6 +18,7 @@
     "b": "babel-node",
     "serve": "serve dist",
     "libor": "babel-node libor.js",
+    "nbp": "babel-node nbp.js",
     "gulp": "gulp"
   },
   "author": "tomazy",

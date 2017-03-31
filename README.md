@@ -21,8 +21,16 @@ Libor 3M
 --------
 
 ```bash
-npm run -s fetch-libor -- 2007-01-01 2017-03-31 > data/libor-3m-chf.csv
+npm run -s libor -- 2007-01-01 2017-03-31 > data/libor-3m-chf.csv
 ```
+
+Kursy NBP
+---------
+
+```bash
+npm run -s nbp -- 2017 > data/nbp-2017.csv
+```
+
 
 Zaktualizowanie strony:
 
