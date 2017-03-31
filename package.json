@@ -17,23 +17,24 @@
     "deploy": "gh-pages -d dist",
     "b": "babel-node",
     "serve": "serve dist",
+    "libor": "babel-node libor.js",
     "gulp": "gulp"
   },
   "author": "tomazy",
   "license": "MIT",
   "dependencies": {
-    "babel-cli": "6.23.0",
+    "babel-cli": "^6.24.0",
     "babel-preset-es2015-node5": "1.2.0",
-    "babel-preset-latest": "6.22.0",
+    "babel-preset-latest": "^6.24.0",
     "babel-preset-stage-0": "6.22.0",
     "cheerio": "0.22.0",
-    "debug": "2.6.1",
+    "debug": "^2.6.3",
     "invariant": "2.2.2",
     "md5": "2.2.1",
     "mkdirp": "0.5.1",
-    "qs": "6.3.1",
-    "request": "2.79.0",
-    "request-promise": "4.1.1"
+    "qs": "^6.4.0",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.0"
   },
   "devDependencies": {
     "gh-pages": "^0.12.0",
@@ -41,15 +42,15 @@
     "gulp-cli": "^1.2.2",
     "gulp-concat": "^2.6.1",
     "gulp-copy": "^1.0.0",
-    "gulp-pug": "^3.2.0",
+    "gulp-pug": "^3.3.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
     "gulp-transform": "^1.1.0",
-    "node-sass": "^4.5.0",
+    "node-sass": "^4.5.2",
     "pad-right": "^0.2.2",
     "pug": "2.0.0-beta11",
     "rimraf": "^2.6.1",
-    "serve": "^3.4.1",
-    "standard": "8.6.0"
+    "serve": "^5.1.2",
+    "standard": "^9.0.2"
   }
 }
