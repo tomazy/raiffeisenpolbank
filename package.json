@@ -10,16 +10,17 @@
   },
   "scripts": {
     "test": "standard",
-    "start": "babel-node index.js",
+    "bank": "babel-node bank.js",
     "prebuild": "npm run build:clean",
     "build": "gulp",
     "build:clean": "rimraf dist",
-    "deploy": "gh-pages -d dist",
+    "deploy": "gh-pages --dist dist --silent",
     "b": "babel-node",
     "serve": "serve dist",
     "libor": "babel-node libor.js",
     "nbp": "babel-node nbp.js",
-    "gulp": "gulp"
+    "gulp": "gulp",
+    "update-rates": "babel-node scripts/update-rates.js"
   },
   "author": "tomazy",
   "license": "MIT",
@@ -38,6 +39,7 @@
     "request-promise": "^4.2.0"
   },
   "devDependencies": {
+    "date-fns": "^1.28.2",
     "gh-pages": "^0.12.0",
     "gulp": "^3.9.1",
     "gulp-cli": "^1.2.2",
@@ -52,6 +54,7 @@
     "pug": "2.0.0-beta11",
     "rimraf": "^2.6.1",
     "serve": "^5.1.2",
+    "shelljs": "^0.7.7",
     "standard": "^9.0.2"
   }
 }
