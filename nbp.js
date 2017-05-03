@@ -102,6 +102,14 @@ const usage = `
 Usage:
   npm -s run nbp -- 2017
 `
+
+function requestOptions (url) {
+  return {
+    url,
+    timeout: REQUEST_TIMEOUT
+  }
+}
+
 function main () {
   let [year] = process.argv.slice(2)
 
@@ -116,11 +124,15 @@ function main () {
   const urlAvgSell = buildUrlAvgSell(year)
 
   Promise.all([
-    request({ url: urlAvg, timeout: REQUEST_TIMEOUT }).then(parseAvg),
-    request({ url: urlAvgSell, timeout: REQUEST_TIMEOUT }).then(parseAvgSell)
+    request(requestOptions(urlAvg)).then(parseAvg),
+    request(requestOptions(urlAvgSell)).then(parseAvgSell)
   ])
   .then(merge)
   .then(print)
+  .catch(e => {
+    console.error(e)
+    process.exit(2)
+  })
 }
 
 main()
