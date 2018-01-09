@@ -9,6 +9,8 @@ function buildQuery (year) {
   const d = new Date()
   if (d.getFullYear() === +year) {
     return new Date(year, d.getMonth(), d.getDate()).toISOString()
+  } else {
+    return `${year}-12-31T00:00:00.000Z`
   }
   return ''
 }

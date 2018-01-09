@@ -1,8 +1,10 @@
 import request from './lib/cachedRequestPromise'
+import { StatusCodeError } from 'request-promise/errors'
+
 import polbankScraper from './lib/scrapers/polbankExchangeRatesScraper'
 import raiffeisenScraper from './lib/scrapers/raiffeisenExchangeRatesScraper'
 import createExecutor from './lib/jobs'
-import { incDay, formatDate, isWeekend, callIf } from './lib/utils'
+import { incDay, formatDate, isWeekend } from './lib/utils'
 
 const LAST_POLBANK_EXCHANGE_RATE_DATE = Date.parse('2014-05-20')
 const CONCURRENCY = process.env.CONCURRENCY || 20
@@ -19,8 +21,17 @@ const KEYS = [
   'url'
 ]
 
-function csvPrint (rates) {
-  console.log(KEYS.map(k => rates[k]).join(','))
+function makeCsvPrint(fromDate, toDate) {
+  return function csvPrint (rates) {
+    if (Array.isArray(rates)) {
+      rates.forEach(csvPrint)
+    } else {
+      const d = new Date(rates.date)
+      if (fromDate <= d && d < toDate) {
+        console.log(KEYS.map(k => rates[k]).join(','))
+      }
+    }
+  }
 }
 
 const executor = createExecutor(CONCURRENCY, function execJob ({ date, time, print }) {
@@ -56,8 +67,17 @@ function getScraper (date) {
 async function scrape (date, time, print) {
   const s = getScraper(date)(CURRENCY)
   const url = s.url(date, time)
+  debug('scrape url "%s"', url)
+  let html;
 
-  const html = await request({ url, timeout: REQUEST_TIMEOUT })
+  try {
+    html = await request({ url, timeout: REQUEST_TIMEOUT })
+  } catch (e) {
+    if (e instanceof StatusCodeError) {
+      console.error(`Unexpected status code: ${e.statusCode} when fetching requesting: ${url}`)
+      process.exit(1);
+    }
+  }
 
   const [rates, otherTimes] = s.parse(html)
 
@@ -70,10 +90,7 @@ async function scrape (date, time, print) {
 }
 
 function scrapePeriod (fromDate, toDate) {
-  const print = callIf(csvPrint, ({ date }) => {
-    const d = new Date(date)
-    return (fromDate <= d && d < toDate)
-  })
+  const print = makeCsvPrint(fromDate, toDate)
 
   let date = fromDate
   while (date < toDate) {
@@ -86,16 +103,22 @@ function scrapePeriod (fromDate, toDate) {
 
 const usage = `
 Usage:
-  npm -s start -- 2007-01-02 2007-01-10
+  npm -s run bank -- 2007-01-02 2007-01-10
 or
-  npm -s start -- 2017 # scrapes from 2017-01-01 up to yesterday
+  npm -s run bank -- 2017 # scrapes from 2017-01-01 up to yesterday
 `
 function main () {
   let [fromDate, toDate] = process.argv.slice(2)
 
   if (/^\d{4}$/.test(fromDate)) {
-    fromDate = `${fromDate}-01-01`
-    toDate = formatDate(new Date())
+    const year = fromDate
+    fromDate = `${year}-01-01`
+    const today = new Date();
+    if (today.getFullYear() === Number(year)) {
+      toDate = formatDate(today)
+    } else {
+      toDate = `${year}-12-31`
+    }
   }
 
   if (!fromDate || !toDate) {
