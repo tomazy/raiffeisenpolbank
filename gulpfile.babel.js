@@ -48,7 +48,8 @@ gulp.task('html', [
   'html:website:kursy:2014',
   'html:website:kursy:2015',
   'html:website:kursy:2016',
-  'html:website:kursy:2017'
+  'html:website:kursy:2017',
+  'html:website:kursy:2018',
 ])
 
 gulp.task('html:watch', () => (
