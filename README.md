@@ -4,11 +4,11 @@ Tabele kursów CHF Raiffeisen/Polbank
 Skrypty do generowania tabel historycznych kursów CHF w Raiffeisen/Polbank
 
 ```bash
-npm -s bank -- 2007-01-01 2008-01-01 | sort | uniq > 2007.csv
+npm -s run bank -- 2007-01-01 2008-01-01 | sort | uniq > 2007.csv
 
 # or
 
-npm -s bank -- 2017 | sort | uniq # scrapes from 2017-01-01 up to yesterday
+npm -s run bank -- 2017 | sort | uniq # scrapes from 2017-01-01 up to yesterday
 
 ```
 
