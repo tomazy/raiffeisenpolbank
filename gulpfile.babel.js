@@ -35,21 +35,14 @@ gulp.task('html:website:index', () => (
     .pipe(gulp.dest(DEST))
 ))
 
+const thisYear = new Date().getFullYear()
+const firstYear = 2007
+const years = Array.from({ length: (thisYear - firstYear + 1) }, (_, idx) => firstYear + idx)
+
 gulp.task('html', [
   'html:website:index',
   'html:website:kursy:index',
-  'html:website:kursy:2007',
-  'html:website:kursy:2008',
-  'html:website:kursy:2009',
-  'html:website:kursy:2010',
-  'html:website:kursy:2011',
-  'html:website:kursy:2012',
-  'html:website:kursy:2013',
-  'html:website:kursy:2014',
-  'html:website:kursy:2015',
-  'html:website:kursy:2016',
-  'html:website:kursy:2017',
-  'html:website:kursy:2018',
+  ...years.map(year => `html:website:kursy:${year}`)
 ])
 
 gulp.task('html:watch', () => (
