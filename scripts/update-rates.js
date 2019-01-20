@@ -11,7 +11,7 @@ const debug = require('debug')('update-rates')
 const DATE_FORMAT = 'YYYY-MM-DD'
 const yesterday = format(startOfYesterday(), DATE_FORMAT)
 
-const year = (new Date()).getFullYear()
+const year = process.env.YEAR || (new Date()).getFullYear()
 const dataDir = path.resolve('data')
 
 function fetchBankRates () {
