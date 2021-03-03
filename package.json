@@ -52,7 +52,7 @@
     "gulp-transform": "^1.1.0",
     "node-sass": "^4.5.2",
     "pad-right": "^0.2.2",
-    "pug": "^2.0.0-rc.1",
+    "pug": "^3.0.1",
     "rimraf": "^2.6.1",
     "serve": "^10.1.1",
     "shelljs": "^0.7.7",
